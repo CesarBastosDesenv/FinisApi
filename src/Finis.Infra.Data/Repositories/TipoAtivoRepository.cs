@@ -1,7 +1,7 @@
 using System;
 using Finis.Domain.Models;
 using Finis.Domain.Pagination;
-using Finis.Infra.Data.Contex;
+using Finis.Infra.Data.Context;
 using Finis.Infra.Data.Helpers;
 using Finis.Infra.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;

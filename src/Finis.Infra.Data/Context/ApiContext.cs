@@ -2,7 +2,7 @@ using System;
 using Finis.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Finis.Infra.Data.Contex;
+namespace Finis.Infra.Data.Context;
 
 public class ApiContext : DbContext
 {
