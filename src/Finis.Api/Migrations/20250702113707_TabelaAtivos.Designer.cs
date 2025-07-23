@@ -4,6 +4,7 @@ using Finis.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Finis.Api.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    partial class ApiContextModelSnapshot : ModelSnapshot
+    [Migration("20250702113707_TabelaAtivos")]
+    partial class TabelaAtivos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,59 +65,7 @@ namespace Finis.Api.Migrations
 
                     b.HasIndex("TipoAtivoId");
 
-                    b.ToTable("Ativos", (string)null);
-                });
-
-            modelBuilder.Entity("Finis.Domain.Models.CompraAtivo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AtivoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Corretora")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly>("DtCompra")
-                        .HasColumnType("date");
-
-                    b.Property<decimal>("EstimativaVenda")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Estrategia")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FlBolsa")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("FlVendido")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("NomeAtivo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("QtdCotas")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("ValorCompra")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("ValorCota")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AtivoId");
-
-                    b.ToTable("CompraAtivos", (string)null);
+                    b.ToTable("Ativos");
                 });
 
             modelBuilder.Entity("Finis.Domain.Models.TipoAtivo", b =>
@@ -134,7 +85,7 @@ namespace Finis.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TipoAtivos", (string)null);
+                    b.ToTable("TipoAtivos");
                 });
 
             modelBuilder.Entity("Finis.Domain.Models.Ativo", b =>
@@ -146,22 +97,6 @@ namespace Finis.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("TipoAtivo");
-                });
-
-            modelBuilder.Entity("Finis.Domain.Models.CompraAtivo", b =>
-                {
-                    b.HasOne("Finis.Domain.Models.Ativo", "Ativo")
-                        .WithMany("CompraAtivos")
-                        .HasForeignKey("AtivoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ativo");
-                });
-
-            modelBuilder.Entity("Finis.Domain.Models.Ativo", b =>
-                {
-                    b.Navigation("CompraAtivos");
                 });
 
             modelBuilder.Entity("Finis.Domain.Models.TipoAtivo", b =>

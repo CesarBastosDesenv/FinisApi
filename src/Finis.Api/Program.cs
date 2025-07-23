@@ -18,13 +18,19 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 var connectionString = builder.Configuration.GetConnectionString("ApiConnection");
 
 builder.Services.AddDbContext<ApiContext>(Options => {
                       Options.UseSqlServer(connectionString, dbOpts => dbOpts.MigrationsAssembly(typeof(Program).Assembly.FullName));
                    });
-builder.Services.AddScoped<ITipoAtivo, TipoAtivoRepository>();      
-builder.Services.AddScoped<ITipoAtivoService, TipoAtivoService>();  
+
+builder.Services.AddScoped<ITipoAtivo, TipoAtivoRepository>();
+builder.Services.AddScoped<IAtivoRepository, AtivoRepository>();
+builder.Services.AddScoped<ICompraAtivoRepository, CompraAtivoRepository>();
+builder.Services.AddScoped<ITipoAtivoService, TipoAtivoService>();
+builder.Services.AddScoped<IAtivoService, AtivoService>();
+builder.Services.AddScoped<ICompraAtivoService, CompraAtivoService>();
 
 builder.Services.AddCors(
     options => {
@@ -38,6 +44,8 @@ builder.Services.AddCors(
 );
 
 var app = builder.Build();
+
+app.UseCors("cors");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

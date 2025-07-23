@@ -7,7 +7,7 @@ namespace Finis.Infra.Data.Mappings;
 
 public class TipoAtivoMap : IEntityTypeConfiguration<TipoAtivo>
 {
- public void Configure(EntityTypeBuilder<TipoAtivo> builder)
+    public void Configure(EntityTypeBuilder<TipoAtivo> builder)
     {
         builder.ToTable("TipoAtivo");
 
@@ -15,10 +15,17 @@ public class TipoAtivoMap : IEntityTypeConfiguration<TipoAtivo>
 
         builder.Property(x => x.TipoNome)
         .IsRequired()
-        .HasColumnType("varchar(50)"); 
-        
+        .HasColumnType("varchar(50)");
+
         builder.Property(x => x.Status)
         .HasDefaultValue(true);
 
-            }
+        builder.HasMany(x => x.Ativos)
+        .WithOne(y => y.TipoAtivo)
+        .HasForeignKey(x => x.Id);
+       
+
+       
+
+    }
 }

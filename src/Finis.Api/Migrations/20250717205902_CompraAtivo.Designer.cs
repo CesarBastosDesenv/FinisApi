@@ -4,6 +4,7 @@ using Finis.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Finis.Api.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    partial class ApiContextModelSnapshot : ModelSnapshot
+    [Migration("20250717205902_CompraAtivo")]
+    partial class CompraAtivo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,7 +65,7 @@ namespace Finis.Api.Migrations
 
                     b.HasIndex("TipoAtivoId");
 
-                    b.ToTable("Ativos", (string)null);
+                    b.ToTable("Ativos");
                 });
 
             modelBuilder.Entity("Finis.Domain.Models.CompraAtivo", b =>
@@ -114,7 +117,7 @@ namespace Finis.Api.Migrations
 
                     b.HasIndex("AtivoId");
 
-                    b.ToTable("CompraAtivos", (string)null);
+                    b.ToTable("CompraAtivos");
                 });
 
             modelBuilder.Entity("Finis.Domain.Models.TipoAtivo", b =>
@@ -134,7 +137,7 @@ namespace Finis.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TipoAtivos", (string)null);
+                    b.ToTable("TipoAtivos");
                 });
 
             modelBuilder.Entity("Finis.Domain.Models.Ativo", b =>
