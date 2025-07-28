@@ -33,7 +33,7 @@ public class AtivoMap : IEntityTypeConfiguration<Ativo>
 
         builder.Property(x => x.QtdCotas)
         .IsRequired()
-        .HasColumnType("numeric(10)");
+        .HasColumnType("decimal(18,8)");
 
         builder.Property(x => x.FlVendido)
         .HasDefaultValue(true);

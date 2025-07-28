@@ -30,6 +30,7 @@ public class AtivoService : IAtivoService
             Imagem = args.Imagem,
             TipoAtivoId = args.TipoAtivoId,
         };
+      
         _ativoRepository.AdicionarAtivo(ativo);
         var result = new ResultViewModel(await _ativoRepository.SaveChangesAsync());
        

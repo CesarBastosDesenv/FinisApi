@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 using Finis.Domain.Models;
 using Finis.Domain.Pagination;
 using Finis.Infra.Data.Context;
@@ -29,7 +30,9 @@ public class AtivoRepository : IAtivoRepository
 
     public async Task<PagedList<Ativo>> BuscaAtivo(int pageNumber, int pageSize)
     {
-       var query = _context.Ativos.OrderByDescending(x => x.TipoAtivoId).AsQueryable();
+       var query = _context.Ativos.Where(Ca => Ca.FlVendido.Equals(false))      
+                                  .OrderByDescending(x => x.TipoAtivoId)
+                                  ;
         return await PaginationHelper.CreateAsync(query, pageNumber, pageSize);
     }
 
