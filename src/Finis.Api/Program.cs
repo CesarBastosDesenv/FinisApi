@@ -28,9 +28,11 @@ builder.Services.AddDbContext<ApiContext>(Options => {
 builder.Services.AddScoped<ITipoAtivo, TipoAtivoRepository>();
 builder.Services.AddScoped<IAtivoRepository, AtivoRepository>();
 builder.Services.AddScoped<ICompraAtivoRepository, CompraAtivoRepository>();
+builder.Services.AddScoped<IContaRepository, ContaRepository>();
 builder.Services.AddScoped<ITipoAtivoService, TipoAtivoService>();
 builder.Services.AddScoped<IAtivoService, AtivoService>();
 builder.Services.AddScoped<ICompraAtivoService, CompraAtivoService>();
+builder.Services.AddScoped<IContaService, ContaService>();
 
 builder.Services.AddCors(
     options => {
