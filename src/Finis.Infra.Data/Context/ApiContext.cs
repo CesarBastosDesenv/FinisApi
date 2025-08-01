@@ -15,4 +15,5 @@ public class ApiContext : DbContext
   public DbSet<CompraAtivo> CompraAtivos { get; set; }
   public DbSet<Conta> Contas { get; set; }
   public DbSet<Movimentacao> Movimentacaoes { get; set; }
+  public DbSet<VendaAtivo> VendaAtivos { get; set; }
 }
