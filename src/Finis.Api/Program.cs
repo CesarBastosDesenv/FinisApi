@@ -24,15 +24,19 @@ var connectionString = builder.Configuration.GetConnectionString("ApiConnection"
 builder.Services.AddDbContext<ApiContext>(Options => {
                       Options.UseSqlServer(connectionString, dbOpts => dbOpts.MigrationsAssembly(typeof(Program).Assembly.FullName));
                    });
-
+//Repository
 builder.Services.AddScoped<ITipoAtivo, TipoAtivoRepository>();
 builder.Services.AddScoped<IAtivoRepository, AtivoRepository>();
 builder.Services.AddScoped<ICompraAtivoRepository, CompraAtivoRepository>();
 builder.Services.AddScoped<IContaRepository, ContaRepository>();
+builder.Services.AddScoped<IMovimentacaoRepository, MovimentacaoRepository>();
+
+//Service
 builder.Services.AddScoped<ITipoAtivoService, TipoAtivoService>();
 builder.Services.AddScoped<IAtivoService, AtivoService>();
 builder.Services.AddScoped<ICompraAtivoService, CompraAtivoService>();
 builder.Services.AddScoped<IContaService, ContaService>();
+builder.Services.AddScoped<IMovimentacaoService, MovimentacaoService>();
 
 builder.Services.AddCors(
     options => {

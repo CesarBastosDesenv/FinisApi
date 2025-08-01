@@ -6,7 +6,7 @@ namespace Finis.Application.Interfaces;
 
 public interface ICompraAtivoService
 {
- Task<ResultViewModel> AddAsync(CompraAtivoCadastro CompraAtivo);
+    Task<ResultViewModel> AddAsync(CompraAtivoCadastro CompraAtivo);
 
     Task<ResultViewModel> UpdateAsync(CompraAtivoUpdate updateAtivo);
 

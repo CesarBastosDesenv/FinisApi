@@ -13,6 +13,6 @@ public class ApiContext : DbContext
   public DbSet<TipoAtivo> TipoAtivos { get; set; }
   public DbSet<Ativo> Ativos { get; set; }
   public DbSet<CompraAtivo> CompraAtivos { get; set; }
-
-   public DbSet<Conta> Contas { get; set; }
+  public DbSet<Conta> Contas { get; set; }
+  public DbSet<Movimentacao> Movimentacaoes { get; set; }
 }

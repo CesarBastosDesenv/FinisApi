@@ -54,7 +54,7 @@ public class CompraAtivoService : ICompraAtivoService
 
     public async Task<PagedList> GetAllAsync(int pageNumber, int pageSize)
     {
-         var retorno = await _compraAtivoRepository.BuscaCompraAtivo(pageNumber, pageSize);
+        var retorno = await _compraAtivoRepository.BuscaCompraAtivo(pageNumber, pageSize);
         var retornoModel = retorno.Select(x => new CompraAtivoView() {
             Id = x.Id,
             AtivoId = x.AtivoId,
