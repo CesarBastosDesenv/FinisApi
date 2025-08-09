@@ -44,8 +44,12 @@ public class AtivoMap : IEntityTypeConfiguration<Ativo>
 
         builder.Property(x => x.Imagem)
         .HasColumnType("varchar(50)");
+
+        builder.HasMany(x => x.CompraAtivos)
+       .WithOne(y => y.Ativo)
+       .HasForeignKey(x => x.Id);
         
-         builder.HasMany(x => x.CompraAtivos)
+        builder.HasMany(x => x.Rendimentos)
         .WithOne(y => y.Ativo)
         .HasForeignKey(x => x.Id);
     }

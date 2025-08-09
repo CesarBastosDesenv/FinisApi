@@ -15,6 +15,7 @@ public class Ativo
     public DateOnly DtCadastro { get; set; }
     public string? Imagem { get; set; }
     public int TipoAtivoId { get; set; }
-    public ICollection<CompraAtivo> CompraAtivos{ get; set; }
+    public ICollection<CompraAtivo> CompraAtivos { get; set; }
+    public ICollection<Rendimento> Rendimentos { get; set; }
 
 }

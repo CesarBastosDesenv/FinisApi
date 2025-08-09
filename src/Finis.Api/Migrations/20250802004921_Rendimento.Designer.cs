@@ -4,6 +4,7 @@ using Finis.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Finis.Api.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    partial class ApiContextModelSnapshot : ModelSnapshot
+    [Migration("20250802004921_Rendimento")]
+    partial class Rendimento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,6 +218,9 @@ namespace Finis.Api.Migrations
                     b.Property<decimal>("QtdCotas")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("TipoId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("ValorRendimento")
                         .HasColumnType("decimal(18,2)");
 
@@ -222,8 +228,6 @@ namespace Finis.Api.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AtivoId");
 
                     b.ToTable("Rendimentos");
                 });
@@ -314,22 +318,9 @@ namespace Finis.Api.Migrations
                     b.Navigation("Ativo");
                 });
 
-            modelBuilder.Entity("Finis.Domain.Models.Rendimento", b =>
-                {
-                    b.HasOne("Finis.Domain.Models.Ativo", "Ativo")
-                        .WithMany("Rendimentos")
-                        .HasForeignKey("AtivoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ativo");
-                });
-
             modelBuilder.Entity("Finis.Domain.Models.Ativo", b =>
                 {
                     b.Navigation("CompraAtivos");
-
-                    b.Navigation("Rendimentos");
                 });
 
             modelBuilder.Entity("Finis.Domain.Models.TipoAtivo", b =>

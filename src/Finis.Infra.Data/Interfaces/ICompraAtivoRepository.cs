@@ -6,7 +6,7 @@ namespace Finis.Infra.Data.Interfaces;
 
 public interface ICompraAtivoRepository
 {
- Task<PagedList<CompraAtivo>> BuscaCompraAtivo(int pageNumber, int pageSize);
+    Task<PagedList<CompraAtivo>> BuscaCompraAtivo(int pageNumber, int pageSize);
     Task<CompraAtivo> BuscaCompraAtivoId(int Id);
     void AdicionarCompraAtivo(CompraAtivo compraAtivo);
     void AtualizarCompraAtivo(CompraAtivo compraAtivo);
