@@ -16,5 +16,7 @@ public class ApiContext : DbContext
   public DbSet<Conta> Contas { get; set; }
   public DbSet<Movimentacao> Movimentacaoes { get; set; }
   public DbSet<VendaAtivo> VendaAtivos { get; set; }
-  public DbSet<Rendimento> Rendimentos { get; set; }
+  public DbSet<Rendimento> Rendimentos { get; set; } 
+   public DbSet<HistoricoAtivo> HistoricoAtivos { get; set; }
+
 }

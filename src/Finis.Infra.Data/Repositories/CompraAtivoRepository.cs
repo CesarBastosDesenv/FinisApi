@@ -38,6 +38,13 @@ public class CompraAtivoRepository : ICompraAtivoRepository
                        Where(x => x.Id == Id).FirstOrDefaultAsync();
     }
 
+    public async Task<PagedList<CompraAtivo>> BuscaCompraAtivoPorIdParams(int pageNumber, int pageSize, int Id)
+    {
+        var query = _context.CompraAtivos.AsQueryable();
+        query = query.Where(x => x.AtivoId.Equals(Id));
+        return await PaginationHelper.CreateAsync(query, pageNumber, pageSize);
+    }
+
     public void DeletarCompraAtivo(int Id)
     {
         _context.Remove(Id);

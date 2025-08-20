@@ -7,6 +7,7 @@ namespace Finis.Infra.Data.Interfaces;
 public interface IRendimentoRepository
 {
     Task<PagedList<Rendimento>> BuscaRendimento(int pageNumber, int pageSize);
+    Task<PagedList<Rendimento>> BuscaRendimentoPorIDParams(int pageNumber, int pageSize, int Id);
     Task<Rendimento> BuscaRendimentoId(int Id);
     void AdicionarRendimento(Rendimento rendimento);
     void AtualizarRendimento(Rendimento rendimento);

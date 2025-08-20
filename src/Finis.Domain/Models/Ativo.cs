@@ -17,5 +17,6 @@ public class Ativo
     public int TipoAtivoId { get; set; }
     public ICollection<CompraAtivo> CompraAtivos { get; set; }
     public ICollection<Rendimento> Rendimentos { get; set; }
+    public ICollection<HistoricoAtivo> HistoricoAtivos { get; set; }
 
 }

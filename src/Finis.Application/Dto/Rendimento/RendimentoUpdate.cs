@@ -7,7 +7,7 @@ public class RendimentoUpdate
 {
     public int Id { get; set; }
     public int AtivoId { get; set; }
-    public int TipoId { get; set; }
+   // public int TipoId { get; set; }
     [Required(ErrorMessage = "{0}: É obrigatório")]
     [StringLength(50, ErrorMessage = "{0}: Maximo de 50 caracteres")]
     public string AnoRendimento { get; set; }

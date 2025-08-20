@@ -54,7 +54,7 @@ public class RendimentoController : ControllerBase
         }
     }
 
-  
+
     [HttpPost]
     public async Task<ActionResult> Add(RendimentoCadastro args)
     {
@@ -62,6 +62,23 @@ public class RendimentoController : ControllerBase
         {
             if (!ModelState.IsValid) return Ok(new ResultViewModel(args, ModelState));
             var result = await _rendimentoService.AddAsync(args);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            var er = new ResultViewModel();
+            er.AddNotification("Erro", ex.Message);
+            return BadRequest(er);
+        }
+    }
+    
+    [HttpGet("{Id}/list")]
+    public async Task<ActionResult> GetListId([FromQuery]PaginationParams paginationParams, int Id)
+    {
+        try
+        {
+            var result = await _rendimentoService.GetListId(paginationParams.PageNumber, paginationParams.PageSize, Id);
+            Response.AddPaginationHeader(new PaginationHeader(result.CurrentPage, result.PageSize, result.TotalCount, result.TotalPages));
             return Ok(result);
         }
         catch (Exception ex)

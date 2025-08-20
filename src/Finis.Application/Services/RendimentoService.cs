@@ -59,7 +59,35 @@ public class RendimentoService : IRendimentoService
         var retornoModel = retorno.Select(x => new RendimentoView() {
             Id = x.Id,
             AtivoId = x.AtivoId,
-            //TipoId = x.TipoId,
+            AnoRendimento = x.AnoRendimento,
+            MesRendimento = x.MesRendimento,
+            QtdCotas = x.QtdCotas,
+            Corretora = x.Corretora,
+            ValorRendimento = x.ValorRendimento,
+            ValorRendimentoReais = x.ValorRendimentoReais,
+            FlBolsa = x.Corretora.ToLower() switch
+            {
+                "Avenue" => "EUA",
+                "Binance" => "EUA",
+                "Inter-EUA" => "EUA",
+                "Inter-BRA" => "B3",
+                "Rico" => "B3",
+                "C6" => "B3",
+                "Nubank" => "B3",
+                _=> x.FlBolsa
+             }
+           
+        });
+        return new PagedList() { Data = retornoModel, TotalCount = retorno.TotalCount };
+    }
+
+    public async Task<PagedList> GetListId(int pageNumber, int pageSize, int Id)
+    {
+        var retorno = await _rendimentoRepository.BuscaRendimentoPorIDParams(pageNumber, pageSize, Id);
+        var retornoModel = retorno.Select(x => new RendimentoView()
+        {
+            Id = x.Id,
+            AtivoId = x.AtivoId,
             AnoRendimento = x.AnoRendimento,
             MesRendimento = x.MesRendimento,
             QtdCotas = x.QtdCotas,
@@ -67,7 +95,6 @@ public class RendimentoService : IRendimentoService
             ValorRendimento = x.ValorRendimento,
             ValorRendimentoReais = x.ValorRendimentoReais,
             FlBolsa = x.FlBolsa,
-           
         });
         return new PagedList() { Data = retornoModel, TotalCount = retorno.TotalCount };
     }

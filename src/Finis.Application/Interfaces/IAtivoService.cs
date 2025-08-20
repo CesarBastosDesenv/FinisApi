@@ -6,7 +6,7 @@ namespace Finis.Application.Interfaces;
 
 public interface IAtivoService
 {
-     Task<ResultViewModel> AddAsync(AtivoCadastro ativo);
+    Task<ResultViewModel> AddAsync(AtivoCadastro ativo);
 
     Task<ResultViewModel> UpdateAsync(AtivoUpdate ativo);
 

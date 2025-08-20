@@ -72,6 +72,28 @@ public class CompraAtivoService : ICompraAtivoService
         return new PagedList() { Data = retornoModel, TotalCount = retorno.TotalCount };
     }
 
+    public async Task<PagedList> GetListId(int pageNumber, int pageSize, int Id)
+    {
+        var retorno = await _compraAtivoRepository.BuscaCompraAtivoPorIdParams(pageNumber, pageSize, Id);
+        var retornoModel = retorno.Select(x => new CompraAtivoView()
+        {
+            Id = x.Id,
+            AtivoId = x.AtivoId,
+            NomeAtivo = x.NomeAtivo,
+            DtCompra = x.DtCompra,
+            ValorCompra = x.ValorCompra,
+            EstimativaVenda = x.EstimativaVenda,
+            ValorCota = x.ValorCota,
+            QtdCotas = x.QtdCotas,
+            FlVendido = x.FlVendido,
+            FlBolsa = x.FlBolsa,
+            Corretora = x.Corretora,
+            Estrategia = x.Estrategia,
+        });
+        return new PagedList() { Data = retornoModel, TotalCount = retorno.TotalCount };
+    }
+    
+
     public Task<ResultViewModel> UpdateAsync(CompraAtivoUpdate CompraAtivo)
     {
         throw new NotImplementedException();

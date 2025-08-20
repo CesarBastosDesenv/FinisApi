@@ -7,6 +7,7 @@ namespace Finis.Application.Interfaces;
 public interface IRendimentoService
 {
     Task<ResultViewModel> AddAsync(RendimentoCadastro CompraRendimento);
+    Task<PagedList> GetListId(int pageNumber, int pageSize, int Id);
 
     Task<ResultViewModel> UpdateAsync(RendimentoUpdate updateRendimento);
 

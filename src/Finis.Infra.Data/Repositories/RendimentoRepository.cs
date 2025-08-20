@@ -40,6 +40,13 @@ public class RendimentoRepository : IRendimentoRepository
                        Where(x => x.Id == Id).FirstOrDefaultAsync();
     }
 
+    public async Task<PagedList<Rendimento>> BuscaRendimentoPorIDParams(int pageNumber, int pageSize, int Id)
+    {
+        var query = _context.Rendimentos.AsQueryable();
+        query = query.Where(x => x.AtivoId.Equals(Id));
+        return await PaginationHelper.CreateAsync(query, pageNumber, pageSize);
+    }
+
     public void DeletarRendimento(int Id)
     {
         _context.Remove(Id);

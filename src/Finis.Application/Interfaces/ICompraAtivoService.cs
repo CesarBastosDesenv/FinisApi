@@ -7,6 +7,7 @@ namespace Finis.Application.Interfaces;
 public interface ICompraAtivoService
 {
     Task<ResultViewModel> AddAsync(CompraAtivoCadastro CompraAtivo);
+    Task<PagedList> GetListId(int pageNumber, int pageSize, int Id);
 
     Task<ResultViewModel> UpdateAsync(CompraAtivoUpdate updateAtivo);
 

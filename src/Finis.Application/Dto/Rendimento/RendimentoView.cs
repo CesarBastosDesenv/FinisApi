@@ -6,7 +6,7 @@ public class RendimentoView
 {
     public int Id { get; set; }
     public int AtivoId { get; set; }
-    public int TipoId { get; set; }
+   // public int TipoId { get; set; }
     public string AnoRendimento { get; set; }
     public string MesRendimento { get; set; }
     public decimal QtdCotas { get; set; }

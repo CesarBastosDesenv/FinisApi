@@ -45,11 +45,11 @@ public class RendimentoMap : IEntityTypeConfiguration<Rendimento>
         .IsRequired()
         .HasColumnType("varchar(50)");
 
-            builder.Property(x => x.Corretora)
+         builder.Property(x => x.Corretora)
         .IsRequired()
         .HasColumnType("varchar(50)");
             
-            builder.Property(x => x.DtRendimento)
+         builder.Property(x => x.DtRendimento)
         .IsRequired()
         .HasColumnType("date(10)");
     }
