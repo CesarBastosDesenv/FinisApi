@@ -13,7 +13,7 @@ public int AtivoId { get; set; }
     public decimal ValorCompra { get; set; }
     public decimal EstimativaVenda { get; set; }
     public decimal ValorCota { get; set; }
-    public int QtdCotas { get; set; }
+    public decimal QtdCotas { get; set; }
     public bool FlVendido { get; set; }
     [Required(ErrorMessage = "{0}: É obrigatório")]
     [StringLength(50, ErrorMessage = "{0}: Maximo de 50 caracteres")]

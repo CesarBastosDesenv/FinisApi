@@ -16,9 +16,12 @@ public class AtivoService : IAtivoService
         _ativoRepository = ativoRepository;
        
     }
+   
 
     public async Task<ResultViewModel> AddAsync(AtivoCadastro args)
     {
+
+        
         var ativo = new Ativo()
         {
             NomeAtivo = args.NomeAtivo,
@@ -29,16 +32,44 @@ public class AtivoService : IAtivoService
             DtCadastro = args.DtCadastro,
             Imagem = args.Imagem,
             TipoAtivoId = args.TipoAtivoId,
+            
         };
-      
+
+        var compraAtivo = new CompraAtivo()
+        {
+
+            NomeAtivo = args.NomeAtivo,
+            DtCompra = args.DtCadastro,
+            ValorCompra = args.ValorCompra,
+            EstimativaVenda = args.EstimativaVenda,
+            ValorCota = args.ValorCota,
+            QtdCotas = args.QtdCotas,
+            FlVendido = args.FlVendido,
+            Corretora = args.Corretora,
+            Estrategia = args.Estrategia,
+            FlBolsa = args.Corretora switch 
+            {
+               "Inter" => "Eua", 
+               "Inter-CDB" => "CDB",
+               "Inter-Tesouro" => "Tesouro",
+               "Inter-CC" => "CC",
+               "Avenue" => "Eua",
+               "Rico-Tesouro" => "Tesouro",
+               "C6-CDB" => "CDB"
+               
+            }
+        };
+         ativo.CompraAtivos = new List<CompraAtivo>();
+         ativo.CompraAtivos.Add(compraAtivo);
         _ativoRepository.AdicionarAtivo(ativo);
+        await _ativoRepository.SaveChangesAsync();
         var result = new ResultViewModel(await _ativoRepository.SaveChangesAsync());
-       
+  
         if (!(bool)result.Data)
             result.AddNotification("", "Erro ao cadastrar");
 
-        return result; 
-    }
+        return result;
+     }
 
     public async Task<ResultViewModel> BuscaAtivoId(int Id)
     {

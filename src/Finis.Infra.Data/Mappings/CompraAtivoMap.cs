@@ -39,10 +39,10 @@ public class CompraAtivoMap : IEntityTypeConfiguration<CompraAtivo>
 
         builder.Property(x => x.QtdCotas)
         .IsRequired()
-        .HasColumnType("numeric(10)");
+        .HasColumnType("decimal(18,8)");
 
         builder.Property(x => x.FlVendido)
-        .HasDefaultValue(true);
+        .HasColumnType("bit");
 
         builder.Property(x => x.FlBolsa)
         .HasColumnType("varchar(50)");

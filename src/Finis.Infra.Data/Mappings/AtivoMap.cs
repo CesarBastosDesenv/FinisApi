@@ -36,7 +36,7 @@ public class AtivoMap : IEntityTypeConfiguration<Ativo>
         .HasColumnType("decimal(18,8)");
 
         builder.Property(x => x.FlVendido)
-        .HasDefaultValue(true);
+         .HasColumnType("bit");
 
         builder.Property(x => x.DtCadastro)
        .IsRequired()
