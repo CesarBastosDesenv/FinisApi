@@ -49,6 +49,13 @@ public class AtivoRepository : IAtivoRepository
         return await PaginationHelper.CreateAsync(query, pageNumber, pageSize);
     }
 
+    public async Task<List<Ativo>> BuscaAtivoSemParam()
+    {
+        return await _context.Ativos.Where(Ca => Ca.FlVendido.Equals(true))
+                                  .OrderByDescending(x => x.TipoAtivoId)
+                                  .ToListAsync();   
+    }
+
     public void DeletarAtivo(int Id)
     {
         throw new NotImplementedException();
@@ -58,4 +65,6 @@ public class AtivoRepository : IAtivoRepository
     {
         return await _context.SaveChangesAsync() > 0;
     }
+
+   
 }

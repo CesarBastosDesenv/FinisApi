@@ -76,9 +76,13 @@ public class AtivoService : IAtivoService
        return new ResultViewModel(await _ativoRepository.BuscaAtivoId(Id));
     }
 
-    public Task<ResultViewModel> DeletaAtivoId(int Id)
+    public async Task<ResultViewModel> DeletaAtivoId(int Id)
     {
-        throw new NotImplementedException();
+        _ativoRepository.DeletarAtivo(Id);
+        var result = new ResultViewModel(await _ativoRepository.SaveChangesAsync());
+        if (!(bool)result.Data)
+            result.AddNotification("", "Erro ao deletar");
+        return result; 
     }
 
     public async Task<PagedList> GetAllAsync(int pageNumber, int pageSize)
@@ -96,6 +100,11 @@ public class AtivoService : IAtivoService
             TipoAtivoId = x.TipoAtivoId,
         });
         return new PagedList() { Data = retornoModel, TotalCount = retorno.TotalCount };
+    }
+
+    public async Task<List<Ativo>> GetAtivos()
+    {
+        return await _ativoRepository.BuscaAtivoSemParam();
     }
 
     public async Task<PagedList> GetListId(int pageNumber, int pageSize, int TipoAtivoId)

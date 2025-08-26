@@ -4,21 +4,27 @@ using Finis.Application.Dto.CompraAtivo;
 using Finis.Application.Interfaces;
 using Finis.Domain.Models;
 using Finis.Infra.Data.Interfaces;
+using Finis.Infra.Data.Repositories;
 
 namespace Finis.Application.Services;
 
 public class CompraAtivoService : ICompraAtivoService
 {
     private ICompraAtivoRepository _compraAtivoRepository;
+    private IAtivoRepository _ativoRepository;
 
-    public CompraAtivoService(ICompraAtivoRepository compraAtivoRepository)
+    public CompraAtivoService(ICompraAtivoRepository compraAtivoRepository, IAtivoRepository ativoRepository)
     {
         _compraAtivoRepository = compraAtivoRepository;
-       
+        _ativoRepository = ativoRepository;
+
     }
+    
+     
 
     public async Task<ResultViewModel> AddAsync(CompraAtivoCadastro args)
     {
+
         var compraAtivo = new CompraAtivo()
         {
             AtivoId = args.AtivoId,
@@ -33,13 +39,22 @@ public class CompraAtivoService : ICompraAtivoService
             Corretora = args.Corretora,
             Estrategia = args.Estrategia,
         };
+
         _compraAtivoRepository.AdicionarCompraAtivo(compraAtivo);
+
+        var ativo = await _ativoRepository.BuscaAtivoId(args.AtivoId);
+
+           ativo.QtdCotas = args.QtdCotas;
+           ativo.FlVendido = false;
+
+        _ativoRepository.AtualizarAtivo(ativo);
+
         var result = new ResultViewModel(await _compraAtivoRepository.SaveChangesAsync());
-       
+
         if (!(bool)result.Data)
             result.AddNotification("", "Erro ao cadastrar");
 
-        return result; 
+        return result;
     }
 
     public Task<ResultViewModel> BuscaCompraAtivoId(int Id)

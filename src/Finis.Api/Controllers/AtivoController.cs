@@ -21,8 +21,24 @@ public class AtivoController : ControllerBase
         _ativoService = ativoService;
     }
 
-    [HttpGet]
-    public async Task<ActionResult> Get([FromQuery] PaginationParams paginationParams)
+    [HttpGet]    
+    public async Task<ActionResult> Get()
+    {
+        try
+        {
+            var result = await _ativoService.GetAtivos();
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            var er = new ResultViewModel();
+            er.AddNotification("Erro", ex.Message);
+            return BadRequest(er);
+        }
+    }
+
+    [HttpGet("all")]
+    public async Task<ActionResult> GetAll([FromQuery] PaginationParams paginationParams)
     {
         try
         {
