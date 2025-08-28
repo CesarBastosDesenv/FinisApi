@@ -53,6 +53,7 @@ public class AtivoController : ControllerBase
             return BadRequest(er);
         }
     }
+    
     [HttpGet("{Id}")]
     public async Task<ActionResult> Get(int Id)
     {

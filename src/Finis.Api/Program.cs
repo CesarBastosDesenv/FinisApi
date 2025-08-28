@@ -33,6 +33,7 @@ builder.Services.AddScoped<IMovimentacaoRepository, MovimentacaoRepository>();
 builder.Services.AddScoped<IVendaAtivoRepository, VendaAtivoRepository>();
 builder.Services.AddScoped<IRendimentoRepository, RendimentoRepository>();
 builder.Services.AddScoped<IHistoricoAtivoRepository, HistoricoAtivoRepository>();
+builder.Services.AddScoped<ICartaoRepository, CartaoRepository>();
 
 //Service
 builder.Services.AddScoped<ITipoAtivoService, TipoAtivoService>();
@@ -43,6 +44,7 @@ builder.Services.AddScoped<IMovimentacaoService, MovimentacaoService>();
 builder.Services.AddScoped<IVendaAtivoService, VendaAtivoService>();
 builder.Services.AddScoped<IRendimentoService, RendimentoService>();
 builder.Services.AddScoped<IHistoricoAtivoService, HistoricoAtivoService>();
+builder.Services.AddScoped<ICartaoService, CartaoService>();
 
 builder.Services.AddCors(
     options => {
